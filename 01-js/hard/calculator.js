@@ -62,6 +62,7 @@ class Calculator {
       console.log(`Result is ${result}`)
       this.result = result
     }catch(e){
+      console.log(e)
       throw new Error(e)
     }
   }
