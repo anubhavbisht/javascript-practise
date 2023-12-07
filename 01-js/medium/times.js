@@ -7,6 +7,13 @@ Try running it for
 Hint - use Date class exposed in JS
 */
 
+function sum(n){
+    return n*(n+1)/2
+}
+
 function calculateTime(n) {
-    return 0.01;
+    const start = new Date()
+    sum(n)
+    const end = new Date()
+    console.log(end-start)
 }

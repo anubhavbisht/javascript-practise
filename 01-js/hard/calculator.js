@@ -17,6 +17,54 @@
   - `npm run test-calculator`
 */
 
-class Calculator {}
+class Calculator {
+  constructor(){
+    this.result = 0;
+  }
+  add(num){
+    this.result+=num
+    console.log(`Added ${num} to the result. The new result is ${this.result}`)
+  }
+  subtract(num){
+    this.result-=num
+    console.log(`Subtracted ${num} to the result. The new result is ${this.result}`)
+  }
+  multiply(num){
+    this.result*=num
+    console.log(`Multiplied ${num} to the result. The new result is ${this.result}`)
+  }
+  divide(num){
+    try{
+      if(num===0){
+        throw new Error('Divisiion by zero not allowed')
+      }
+      this.result/=num
+      console.log(`Divided ${num} to the result. The new result is ${this.result}`)
+    }catch(e){
+      throw new Error(e)
+    }
+  }
+  clear(){
+    this.result=0
+    console.log(`Cleared the result. The new result is ${this.result}`)
+  }
+  getResult(){
+    console.log(`Result is ${this.result}`)
+    return this.result
+  }
+  calculate(expression){
+    try{
+      const trimmedExpression = expression.split(' ').join('')
+      const result = eval(trimmedExpression)
+      if(!isFinite(result)){
+        throw new Error('Division by zero not allowed')
+      }
+      console.log(`Result is ${result}`)
+      this.result = result
+    }catch(e){
+      throw new Error(e)
+    }
+  }
+}
 
 module.exports = Calculator;

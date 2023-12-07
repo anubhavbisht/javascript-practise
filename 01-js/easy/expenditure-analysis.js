@@ -8,8 +8,28 @@
   - `npm run test-expenditure-analysis`
 */
 
+const groupBy = (array,key) =>{
+  const result = array.reduce((acc,curr)=>{
+    if(acc[curr[key]]){
+      acc[curr[key]].push(curr)
+    }else{
+      acc[curr[key]] = [curr]
+    }
+    return acc
+  },{})
+  return result
+}
+
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  const expenditureByCategory = groupBy(transactions, 'category')
+  return Object.keys(expenditureByCategory).map((category) => {
+    const array = expenditureByCategory[category]
+    const totalSpent = array.reduce((acc, curr) => {
+      return acc + curr.price
+    }, 0)
+    return {category,totalSpent}
+  })
 }
 
 module.exports = calculateTotalSpentByCategory;
+
